@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\FooterGridTwoController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\HomeSectionSettingController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RolePermissionController;
@@ -53,8 +54,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
   Route::get('fetch-news-category', [NewsController::class, 'fetchCategory'])->name('fetch-news-category');
   Route::get('toggle-news-status', [NewsController::class, 'toggleNewsStatus'])->name('toggle-news-status');
   Route::get('news-copy/{id}', [NewsController::class, 'copyNews'])->name('news-copy');
-  // Route::get('pending-news', [NewsController::class, 'pendingNews'])->name('pending.news');
-  // Route::put('approve-news', [NewsController::class, 'approveNews'])->name('approve.news');
+  Route::get('pending-news', [NewsController::class, 'pendingNews'])->name('pending.news');
+  Route::put('approve-news', [NewsController::class, 'approveNews'])->name('approve.news');
   Route::resource('news', NewsController::class);
 
   /** Home Section Setting Route */
@@ -117,4 +118,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
 
   /** Admin User Routes */
   Route::resource('role-users', RoleUserController::class);
+
+  /** Localization Routes */
+  Route::get('admin-localization', [LocalizationController::class, 'adminIndex'])->name('admin-localization.index');
+  Route::get('frontend-localization', [LocalizationController::class, 'frontnedIndex'])->name('frontend-localization.index');
+  Route::post('extract-localize-string', [LocalizationController::class, 'extractLocalizationStrings'])->name('extract-localize-string');
+  Route::post('update-lang-string', [LocalizationController::class, 'updateLangString'])->name('update-lang-string');
+  Route::post('translate-string', [LocalizationController::class, 'translateString'])->name('translate-string');
 });

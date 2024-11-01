@@ -1,8 +1,11 @@
 @php
-$languages = \App\Models\Language::where('status', 1)->get();
-$FeaturedCategories = \App\Models\Category::where(['status' => 1, 'language' => getLanguage(), 'show_at_nav' =>
-1])->get();
-$categories = \App\Models\Category::where(['status' => 1, 'language' => getLanguage(), 'show_at_nav' => 0])->get();
+    $languages = \App\Models\Language::where('status', 1)->get();
+    $FeaturedCategories = \App\Models\Category::where([
+        'status' => 1,
+        'language' => getLanguage(),
+        'show_at_nav' => 1,
+    ])->get();
+    $categories = \App\Models\Category::where(['status' => 1, 'language' => getLanguage(), 'show_at_nav' => 0])->get();
 @endphp
 
 <header class="bg-light">
@@ -14,9 +17,9 @@ $categories = \App\Models\Category::where(['status' => 1, 'language' => getLangu
                     <div class="topbar-left topbar-right d-flex">
                         <ul class="topbar-sosmed p-0">
                             @foreach ($socialLinks as $link)
-                            <li>
-                                <a href="{{ $link->url }}"><i class="{{ $link->icon }}"></i></a>
-                            </li>
+                                <li>
+                                    <a href="{{ $link->url }}"><i class="{{ $link->icon }}"></i></a>
+                                </li>
                             @endforeach
                         </ul>
                         <div class="topbar-text">
@@ -29,23 +32,25 @@ $categories = \App\Models\Category::where(['status' => 1, 'language' => getLangu
                         <div class="topbar_language">
                             <select id="site-language">
                                 @foreach ($languages as $language)
-                                <option value="{{ $language->lang }}" {{ getLanguage()===$language->lang ? 'selected' :
-                                    '' }}>{{ $language->name }}
-                                </option>
+                                    <option value="{{ $language->lang }}"
+                                        {{ getLanguage() === $language->lang ? 'selected' : '' }}>
+                                        {{ $language->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                         <ul class="topbar-link">
                             @if (!auth()->check())
-                            <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                <li><a href="{{ route('login') }}">{{ __('frontend.Login') }}</a></li>
+                                <li><a href="{{ route('register') }}">{{ __('frontend.Register') }}</a></li>
                             @else
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <li><a onclick="event.preventDefault();
-                                this.closest('form').submit();" href="{{ route('register') }}">{{ __('Logout') }}</a>
-                                </li>
-                            </form>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <li><a onclick="event.preventDefault();
+                                this.closest('form').submit();"
+                                            href="{{ route('register') }}">{{ __('frontend.Logout') }}</a>
+                                    </li>
+                                </form>
                             @endif
                         </ul>
                     </div>
@@ -73,30 +78,30 @@ $categories = \App\Models\Category::where(['status' => 1, 'language' => getLangu
                 <div class="collapse navbar-collapse justify-content-between" id="main_nav99">
                     <ul class="navbar-nav ml-auto ">
                         @foreach ($FeaturedCategories as $category)
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('news', ['category' => $category->slug]) }}">{{
-                                $category->name }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link active"
+                                    href="{{ route('news', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                            </li>
                         @endforeach
 
                         @if (count($categories) > 0)
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                                {{ __('More') }} </a>
-                            <ul class="dropdown-menu animate fade-up">
-                                @foreach ($categories as $category)
-                                <li><a class="dropdown-item icon-arrow"
-                                        href="{{ route('news', ['category' => $category->slug]) }}">
-                                        {{ $category->name }}
-                                    </a></li>
-                                @endforeach
-                            </ul>
-                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    {{ __('frontend.More') }} </a>
+                                <ul class="dropdown-menu animate fade-up">
+                                    @foreach ($categories as $category)
+                                        <li><a class="dropdown-item icon-arrow"
+                                                href="{{ route('news', ['category' => $category->slug]) }}">
+                                                {{ $category->name }}
+                                            </a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
                         @endif
                         <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">
-                                {{ __('About Us') }} </a></li>
+                                {{ __('frontend.About Us') }} </a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">
-                                {{ __('contact') }} </a></li>
+                                {{ __('frontend.Contact') }} </a></li>
                     </ul>
 
                     <!-- Search bar.// -->
@@ -115,8 +120,8 @@ $categories = \App\Models\Category::where(['status' => 1, 'language' => getLangu
                                     <div class="row no-gutters mt-3">
                                         <div class="col">
                                             <input class="form-control border-secondary border-right-0 rounded-0"
-                                                type="search" value="" placeholder="Search " id="example-search-input4"
-                                                name="search">
+                                                type="search" value="" placeholder="Search "
+                                                id="example-search-input4" name="search">
                                         </div>
                                         <div class="col-auto">
                                             <button type="submit"
@@ -165,33 +170,32 @@ $categories = \App\Models\Category::where(['status' => 1, 'language' => getLangu
                     <nav class="list-group list-group-flush">
                         <ul class="navbar-nav ">
                             @foreach ($FeaturedCategories as $category)
-                            <li class="nav-item">
-                                <a class="nav-link active text-dark"
-                                    href="{{ route('news', ['category' => $category->slug]) }}">
-                                    {{ $category->name }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active text-dark"
+                                        href="{{ route('news', ['category' => $category->slug]) }}">
+                                        {{ $category->name }}</a>
+                                </li>
                             @endforeach
 
                             @if (count($categories) > 0)
-                            <li class="nav-item">
-                                <a class="nav-link active dropdown-toggle  text-dark" href="#"
-                                    data-toggle="dropdown">More </a>
-                                <ul class="dropdown-menu dropdown-menu-left">
-                                    @foreach ($categories as $category)
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('news', ['category' => $category->slug]) }}">{{
-                                            $category->name }}</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active dropdown-toggle  text-dark" href="#"
+                                        data-toggle="dropdown">More </a>
+                                    <ul class="dropdown-menu dropdown-menu-left">
+                                        @foreach ($categories as $category)
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('news', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
                             @endif
 
                             <li class="nav-item"><a class="nav-link  text-dark" href="{{ route('about') }}">
-                                    {{ __('About Us') }} </a>
+                                    {{ __('frontend.About Us') }} </a>
                             </li>
                             <li class="nav-item"><a class="nav-link  text-dark" href="{{ route('contact') }}">
-                                    {{ __('contact') }} </a>
+                                    {{ __('frontend.Contact') }} </a>
                             </li>
                         </ul>
                     </nav>
