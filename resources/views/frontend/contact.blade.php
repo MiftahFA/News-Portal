@@ -93,8 +93,7 @@
                             <ul class="list-inline">
                                 @foreach ($socials as $social)
                                     <li class="list-inline-item-contact mx-1">
-                                        <a href="https://www.linkedin.com/"
-                                            class="btn btn-social rounded text-white facebook">
+                                        <a href="{{ $social->url }}" class="btn btn-social rounded text-white facebook">
                                             <i class="{{ $social->icon }}"></i>
                                         </a>
                                     </li>

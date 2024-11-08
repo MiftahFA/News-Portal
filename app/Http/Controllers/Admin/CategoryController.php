@@ -8,6 +8,7 @@ use App\Http\Requests\AdminCategoryCreateRequest;
 use App\Http\Requests\AdminCategoryUpdateRequest;
 use App\Models\Category;
 use App\Models\Language;
+use App\Models\News;
 use Illuminate\Support\Str;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -75,10 +76,11 @@ class CategoryController extends Controller implements HasMiddleware
   {
     try {
       $category = Category::findOrFail($id);
-      // $news = News::where('category_id', $category->id)->get();
-      // foreach ($news as $item) {
-      //     $item->tags()->delete();
-      // }
+      $news = News::where('category_id', $category->id)->get();
+      foreach ($news as $item) {
+        $item->tags()->delete();
+      }
+
       $category->delete();
       return response(['status' => 'success', 'message' => __('admin.Deleted Successfully')]);
     } catch (\Throwable $th) {

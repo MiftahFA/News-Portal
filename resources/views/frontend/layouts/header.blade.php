@@ -86,7 +86,7 @@
 
                         @if (count($categories) > 0)
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown">
                                     {{ __('frontend.More') }} </a>
                                 <ul class="dropdown-menu animate fade-up">
                                     @foreach ($categories as $category)

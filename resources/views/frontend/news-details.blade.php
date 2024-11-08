@@ -149,16 +149,16 @@
                     <!-- authors-->
                     <!-- Profile author -->
                     <div class="wrap__profile">
-                        <div class="wrap__profile-author">
+                        <div class="wrap__profile-author" style="width:50% !important">
                             <figure>
-                                <img style="width: 200px;height: 200px;object-fit: cover;"
+                                <img style="width: 100px;height: 100px;object-fit: cover;"
                                     src="{{ asset($news->auther->image) }}" alt=""
                                     class="img-fluid rounded-circle">
                             </figure>
-                            <div class="wrap__profile-author-detail">
-                                <div class="author-wrapper">
+                            <div class="wrap__profile-author-detail" style="position: relative">
+                                <div class="author-wrapper" style="position: absolute; top: 20%;">
                                     <div class="wrap__profile-author-detail-name">
-                                        {{-- {{ $news->auther->getRoleNames()->first() }} --}}
+                                        {{ $news->auther->getRoleNames()->first() }}
                                     </div>
                                     <h4>{{ $news->auther->name }}</h4>
                                 </div>
@@ -269,7 +269,7 @@
                                                                 value="{{ $news->id }}">
                                                             <input type="hidden" name="parent_id"
                                                                 value="{{ $comment->id }}">
-                                                            <button type="submit">{{ __('frontend.submit') }}</button>
+                                                            <button type="submit">{{ __('frontend.Submit') }}</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -317,7 +317,7 @@
                             <div class="single_navigation-prev">
                                 @if ($previousPost)
                                     <a href="{{ route('news-details', $previousPost->slug) }}">
-                                        <span>{{ __('frontend.previous post') }}</span>
+                                        <span>{{ __('frontend.Previous Post') }}</span>
                                         {!! truncate($previousPost->title) !!}
                                     </a>
                                 @endif
@@ -327,7 +327,7 @@
                             <div class="single_navigation-next text-left text-md-right">
                                 @if ($nextPost)
                                     <a href="{{ route('news-details', $nextPost->slug) }}">
-                                        <span>{{ __('frontend.next post') }}</span>
+                                        <span>{{ __('frontend.Next Post') }}</span>
                                         {!! truncate($nextPost->title) !!}
                                     </a>
                                 @endif
@@ -482,7 +482,7 @@
 
                         <!-- social media -->
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.stay conected') }}</h4>
+                            <h4 class="border_section">{{ __('frontend.Stay Conected') }}</h4>
                             <!-- widget Social media -->
                             <div class="wrap__social__media">
                                 @foreach ($socialCounts as $socialCount)
@@ -522,7 +522,7 @@
                         </aside>
 
                         <aside class="wrapper__list__article">
-                            <h4 class="border_section">{{ __('frontend.newsletter') }}</h4>
+                            <h4 class="border_section">{{ __('frontend.Newsletter') }}</h4>
                             <!-- Form Subscribe -->
                             <div class="widget__form-subscribe bg__card-shadow">
                                 <h6>
