@@ -1,7 +1,9 @@
 @extends('admin.layouts.master')
-<link rel="stylesheet" href="{{ asset('admin/assets/modules/datatables/datatables.min.css') }}">
-<link rel="stylesheet"
-    href="{{ asset('admin/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+@push('css')
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/datatables/datatables.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('admin/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+@endpush
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -15,21 +17,23 @@
             <div class="card-body">
                 <form action="{{ route('admin.subscribers.store') }}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <label for="">{{ __('admin.Subject') }}</label>
-                        <input type="text" class="form-control" name="subject">
-                        @error('subject')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">{{ __('admin.Subject') }}</label>
+                            <input type="text" class="form-control" name="subject">
+                            @error('subject')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">{{ __('admin.Message') }}</label>
+                            <textarea name="message" class="summernote" id="" cols="30" rows="10"></textarea>
+                            @error('message')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary">{{ __('admin.Send') }}</button>
                     </div>
-                    <div class="form-group">
-                        <label for="">{{ __('admin.Message') }}</label>
-                        <textarea name="message" class="summernote" id="" cols="30" rows="10"></textarea>
-                        @error('message')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <button type="submit" class="btn btn-primary">{{ __('admin.Send') }}</button>
                 </form>
             </div>
         </div>

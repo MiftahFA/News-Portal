@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-<link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
+@push('css')
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
+@endpush
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -36,61 +38,63 @@
                                 <form action="{{ route('admin.home-section-setting.update') }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <div class="form-group">
-                                        <label for=""
-                                            class="col-lg-12 p-0">{{ __('admin.Category Section One') }}</label>
-                                        <input type="hidden" name="language" value="{{ $language->lang }}">
-                                        <select name="category_section_one" id="" class="form-control select2"
-                                            style="width: 100%">
-                                            <option value="">--{{ __('admin.Select') }}--</option>
-                                            @foreach ($categories as $category)
-                                                <option
-                                                    {{ @$homeSectionSetting->category_section_one == $category->id ? 'selected' : '' }}
-                                                    value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for=""
-                                            class="col-lg-12 p-0">{{ __('admin.Category Section Two') }}</label>
-                                        <select name="category_section_two" id="" class="form-control select2"
-                                            style="width: 100%">
-                                            <option value="">--{{ __('admin.Select') }}--</option>
-                                            @foreach ($categories as $category)
-                                                <option
-                                                    {{ @$homeSectionSetting->category_section_two == $category->id ? 'selected' : '' }}
-                                                    value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for=""
-                                            class="col-lg-12 p-0">{{ __('admin.Category Section Three') }}</label>
-                                        <select name="category_section_three" id="" class="form-control select2"
-                                            style="width: 100%">
-                                            <option value="">--{{ __('admin.Select') }}--</option>
-                                            @foreach ($categories as $category)
-                                                <option
-                                                    {{ @$homeSectionSetting->category_section_three == $category->id ? 'selected' : '' }}
-                                                    value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for=""
+                                                class="col-lg-12 p-0">{{ __('admin.Category Section One') }}</label>
+                                            <input type="hidden" name="language" value="{{ $language->lang }}">
+                                            <select name="category_section_one" id="" class="form-control select2"
+                                                style="width: 100%" style="width: 100%">
+                                                <option value="">--{{ __('admin.Select') }}--</option>
+                                                @foreach ($categories as $category)
+                                                    <option
+                                                        {{ @$homeSectionSetting->category_section_one == $category->id ? 'selected' : '' }}
+                                                        value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for=""
+                                                class="col-lg-12 p-0">{{ __('admin.Category Section Two') }}</label>
+                                            <select name="category_section_two" id="" class="form-control select2"
+                                                style="width: 100%" style="width: 100%">
+                                                <option value="">--{{ __('admin.Select') }}--</option>
+                                                @foreach ($categories as $category)
+                                                    <option
+                                                        {{ @$homeSectionSetting->category_section_two == $category->id ? 'selected' : '' }}
+                                                        value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for=""
+                                                class="col-lg-12 p-0">{{ __('admin.Category Section Three') }}</label>
+                                            <select name="category_section_three" id=""
+                                                class="form-control select2" style="width: 100%" style="width: 100%">
+                                                <option value="">--{{ __('admin.Select') }}--</option>
+                                                @foreach ($categories as $category)
+                                                    <option
+                                                        {{ @$homeSectionSetting->category_section_three == $category->id ? 'selected' : '' }}
+                                                        value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for=""
-                                            class="col-lg-12 p-0">{{ __('admin.Category Section Four') }}</label>
-                                        <select name="category_section_four" id="" class="form-control select2"
-                                            style="width: 100%">
-                                            <option value="">--{{ __('admin.Select') }}--</option>
-                                            @foreach ($categories as $category)
-                                                <option
-                                                    {{ @$homeSectionSetting->category_section_four == $category->id ? 'selected' : '' }}
-                                                    value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <div class="form-group">
+                                            <label for=""
+                                                class="col-lg-12 p-0">{{ __('admin.Category Section Four') }}</label>
+                                            <select name="category_section_four" id="" class="form-control select2"
+                                                style="width: 100%" style="width: 100%">
+                                                <option value="">--{{ __('admin.Select') }}--</option>
+                                                @foreach ($categories as $category)
+                                                    <option
+                                                        {{ @$homeSectionSetting->category_section_four == $category->id ? 'selected' : '' }}
+                                                        value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">{{ __('admin.Save') }}</button>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">{{ __('admin.Save') }}</button>
                                 </form>
                             </div>
                         </div>

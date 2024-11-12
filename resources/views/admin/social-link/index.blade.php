@@ -1,7 +1,9 @@
 @extends('admin.layouts.master')
-<link rel="stylesheet" href="{{ asset('admin/assets/modules/datatables/datatables.min.css') }}">
-<link rel="stylesheet"
-    href="{{ asset('admin/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+@push('css')
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/datatables/datatables.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('admin/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+@endpush
 @section('content')
     <section class="section">
         <div class="section-header">

@@ -1,8 +1,10 @@
 @extends('admin.layouts.master')
-<link rel="stylesheet" href="{{ asset('admin/assets/modules/datatables/datatables.min.css') }}">
-<link rel="stylesheet"
-    href="{{ asset('admin/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
+@push('css')
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/datatables/datatables.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('admin/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
+@endpush
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -76,8 +78,8 @@
                                                                 <div class="form-group">
                                                                     <div class="col-lg-12 p-0">
                                                                         <select name="is_approve"
-                                                                            class="form-control select2" id="approve-input"
-                                                                            style="width: 100%">
+                                                                            class="form-control select2" style="width: 100%"
+                                                                            id="approve-input" style="width: 100%">
                                                                             <option value="0">
                                                                                 {{ __('admin.Pending') }}
                                                                             </option>
